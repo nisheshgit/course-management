@@ -1,5 +1,7 @@
 package com.geekmj.seedgs.serviceimpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,12 @@ public class UserServiceImpl implements UserService {
 		user = userDao.findUserById(userId);
 			
 		return user;
+	}
+
+	@Override
+	public List<User> findAllUser() {
+		
+		return userDao.findUsers();
 	}
 	
 }

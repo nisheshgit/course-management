@@ -41,6 +41,10 @@ public class MainController {
     	
     	model.addAttribute("user", user);
     	
+    	List<User> users = userService.findAllUser();
+    	
+    	model.addAttribute("users", users);
+    	
         return "index";
     }
     

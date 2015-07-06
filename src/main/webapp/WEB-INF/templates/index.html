@@ -1,32 +1,30 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Home Page</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Home Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<p th:text="'Quotation Of The Day'" />
-<hr/>
+	<p th:text="'Quotation Of The Day'" />
+	<hr />
 
-<p th:text="${quotation}" />
+	<p th:text="${quotation}" />
 
-<hr/>
-<h1> User Details </h1>
+	<hr />
+	<h1>User Details</h1>
 
-<table>
-
-<tr>
-<th>Id</th>
-<th>Name</th>
-<th>Age</th>
-</tr>
-
-<tr>
-<td th:text="${user.userId}"/>
-<td th:text="${user.name}"/>
-<td th:text="${user.age}"/>
-</tr>
-</table>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Age</th>
+		</tr>
+		<tr th:each="user : ${users}">
+			<td th:text="${user.userId}"></td>
+			<td th:text="${user.name}"></td>
+			<td th:text="${user.age}"></td>
+		</tr>
+	</table>
 
 
 </body>
