@@ -11,6 +11,23 @@
 <p th:text="${quotation}" />
 
 <hr/>
+<h1> User Details </h1>
+
+<table>
+
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>Age</th>
+</tr>
+
+<tr>
+<td th:text="${user.userId}"/>
+<td th:text="${user.name}"/>
+<td th:text="${user.age}"/>
+</tr>
+</table>
+
 
 </body>
 </html>

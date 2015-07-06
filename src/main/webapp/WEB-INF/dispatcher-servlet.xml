@@ -1,28 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-       <context:component-scan base-package="com.geekmj.seedgs.controller"/>
+	<context:component-scan base-package="com.geekmj.seedgs" />
 
-       <bean id="templateResolver"
-              class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
-         <property name="prefix" value="/WEB-INF/templates/" />
-         <property name="suffix" value=".html" />
-         <property name="templateMode" value="HTML5" />
-       </bean>
+	<bean id="templateResolver"
+		class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+		<property name="prefix" value="/WEB-INF/templates/" />
+		<property name="suffix" value=".html" />
+		<property name="templateMode" value="HTML5" />
+	</bean>
 
-       <bean id="templateEngine"
-             class="org.thymeleaf.spring4.SpringTemplateEngine">
-         <property name="templateResolver" ref="templateResolver" />
-       </bean>
-       
-       <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
- 			<property name="templateEngine" ref="templateEngine" />
- 	   </bean>
+	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+		<property name="templateResolver" ref="templateResolver" />
+	</bean>
+
+	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+		<property name="templateEngine" ref="templateEngine" />
+	</bean>
+
+	<!-- Database Configuration -->
+	
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+        <property name="poolName" value="springHikariCP" />
+        <property name="connectionTestQuery" value="SELECT 1" />
+        <property name="dataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" />
+        <property name="maximumPoolSize" value="50" />
+        <property name="maxLifetime" value="28000" />
+        <property name="idleTimeout" value="30000" />
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="url">jdbc:mysql://localhost:3306/test?zeroDateTimeBehavior=convertToNull</prop>
+                <prop key="user">root</prop>
+                <prop key="password"></prop>
+                <prop key="prepStmtCacheSize">250</prop>
+                <prop key="prepStmtCacheSqlLimit">2048</prop>
+                <prop key="cachePrepStmts">true</prop>
+                <prop key="useServerPrepStmts">true</prop>
+            </props>
+        </property>
+    </bean>
+
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+		<constructor-arg ref="hikariConfig" />
+	</bean>
+
 </beans>
