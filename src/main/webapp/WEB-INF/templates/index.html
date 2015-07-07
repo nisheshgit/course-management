@@ -23,9 +23,30 @@
 			<td th:text="${user.userId}"></td>
 			<td th:text="${user.name}"></td>
 			<td th:text="${user.age}"></td>
+			<td> <a th:href="'user?userId='+${user.userId}">Edit</a></td>
+			<!--  <td> <a th:href="'delete-user?userId='+${user.userId}">Delete</a></td>-->
+			<td> <a th:href="'javascript:deleteUserConfirm('+${user.userId}+');'">Delete</a></td>
 		</tr>
 	</table>
+	<hr/>
+	<a href="user">Add a new user</a>
 
+<script type="text/javascript">
 
+var deleteUserConfirm = function (userId) {
+	var txt;
+	var userConfirmValue = confirm("Are you sure you wanted to delete this user!");
+	if (userConfirmValue == true) {
+	    deleteUser(userId);
+	} else {
+	    alert("Your user is safe now");
+	}
+}
+
+var deleteUser = function (userId) {
+	location.href="delete-user?userId="+userId;
+}
+
+</script>
 </body>
 </html>

@@ -24,7 +24,7 @@
 		<property name="templateEngine" ref="templateEngine" />
 	</bean>
 
-	<!-- Database Configuration -->
+	<!-- Database Configuration Hikari Connection Pool -->
 	
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="poolName" value="springHikariCP" />
