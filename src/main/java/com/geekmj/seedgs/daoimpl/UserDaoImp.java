@@ -18,12 +18,12 @@ import com.geekmj.seedgs.dao.UserDao;
 import com.geekmj.seedgs.domain.User;
 
 @Repository
-public class UserDaoImpl implements UserDao {
+public class UserDaoImp implements UserDao {
 
 	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
-	public UserDaoImpl(DataSource dataSource) {
+	public UserDaoImp(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 

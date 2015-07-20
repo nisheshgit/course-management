@@ -1,62 +1,50 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>Home Page</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
-
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
-</head>
-<body style="padding-left: 50px;">
-	<p th:text="'Quotation Of The Day'" />
-	<hr />
-
-	<p th:text="${quotation}" />
-
-	<hr />
-	<h1>User Details</h1>
-
-	<table>
-		<tr>
-			<th>Id</th>
-			<th>Name</th>
-			<th>Age</th>
-		</tr>
-		<tr th:each="user : ${users}">
-			<td th:text="${user.userId}"></td>
-			<td th:text="${user.name}"></td>
-			<td th:text="${user.age}"></td>
-			<td><a th:href="'user?userId='+${user.userId}">Edit</a></td>
-			<!--  <td> <a th:href="'delete-user?userId='+${user.userId}">Delete</a></td>-->
-			<td><a
-				th:href="'javascript:deleteUserConfirm('+${user.userId}+');'">Delete</a></td>
-		</tr>
-	</table>
-	<hr />
-	<a href="user">Add a new user</a>
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-	<script type="text/javascript">
-		var deleteUserConfirm = function(userId) {
-			var txt;
-			var userConfirmValue = confirm("Are you sure you wanted to delete this user!");
-			if (userConfirmValue == true) {
-				deleteUser(userId);
-			} else {
-				alert("Your user is safe now");
-			}
+<!DOCTYPE html>
+<html lang="en"  ng-app="postExample" >
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.min.js"></script>      
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular-resource.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular-cookies.min.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"></link>
+    
+<!--     <style type="text/css">
+		.login-form {
+			max-width: 300px;
+			margin: 0 auto;
 		}
-
-		var deleteUser = function(userId) {
-			location.href = "delete-user?userId=" + userId;
+		#inputUsername {
+		  margin-bottom: -1px;
+		  border-bottom-right-radius: 0;
+		  border-bottom-left-radius: 0;
 		}
-	</script>
-</body>
+		#inputPassword {
+			border-top-left-radius: 0;
+  			border-top-right-radius: 0;
+		}
+		
+		.btn-block {
+			display: inline;
+			width: 50%;
+		}
+	</style> -->
+    <script src="/resources/js/index.js"></script>
+	<script src="/resources/styles/mystyle.css"></script> 
+    </head>
+      <body ng-controller="MainController">  
+    
+    <div class="container">
+      <form class="login-form">
+        <h2 style="text-align:center">Log In</h2>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus ng-model="username">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model="password">
+		<br>
+        <div class="form-group">
+			<input class="btn btn-primary btn-lg active" type="submit"  value="Login" ng-click="login()" ng-disabled="form.userEmail.$invalid || form.userPassword.$invalid"/>
+		</div>	
+     </form>
+    </div>  
+    </body>
 </html>
