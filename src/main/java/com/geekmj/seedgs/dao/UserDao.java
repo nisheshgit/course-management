@@ -8,13 +8,8 @@ public interface UserDao {
 
 	public Long insert(User user);
 
-	public Integer update(User user);
-
-	public User findUserById(Long id);
-
 	public List<User> findUsers();
 
-	public void deleteUserById(Long userId);
-	
+	public void deleteUserById(Long userId);	
 	
 }

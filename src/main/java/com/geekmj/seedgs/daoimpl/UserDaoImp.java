@@ -33,10 +33,10 @@ public class UserDaoImp implements UserDao {
 		
 		System.out.println(user.getName() + user.getEmail() + user.getPassword());
 		SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbctemplate)
-		.withTableName("User").usingGeneratedKeyColumns("id");
+		.withTableName("User").usingGeneratedKeyColumns("userid");
 		final Map<String,Object> userMap = new HashMap<>();
-		userMap.put("username", user.getName());
-		userMap.put("password", user.getPassword());
+		userMap.put("name", user.getName());
+		userMap.put("pass", user.getPassword());
 		userMap.put("email", user.getEmail());	
 
 		final Number key = jdbcInsert.executeAndReturnKey(userMap);
@@ -46,31 +46,9 @@ public class UserDaoImp implements UserDao {
 	}
 
 	@Override
-	public Integer update(User user) {
-		return null;
-	}
-
-	@Override
-	public User findUserById(Long id) {
-		User user = this.jdbctemplate.queryForObject(
-				"select id,username,DOJ,role from User where id = ?",
-				new Object [] { id } , new RowMapper<User>() {
-					public User mapRow(ResultSet rs, int rowNum)
-							throws SQLException {
-						User user = new User();
-						user.setName(rs.getString("name"));
-						user.setPassword(rs.getString("pass"));
-						user.setEmail(rs.getString("email"));	
-						return user;
-					}
-				});	
-		return user;
-	}
-
-	@Override
 	public List<User> findUsers() {
 		List<User> users = this.jdbctemplate.query(
-				"select user_id,name,pass,email from User" , new UserMapper());
+				"select userid,name,email,pass from User" , new UserMapper());
 		return users;
 	}
 
@@ -80,7 +58,7 @@ public class UserDaoImp implements UserDao {
 
 		public User mapRow(ResultSet rs, int rowNum) throws SQLException {
 			User user = new User();
-			user.setName(rs.getString("username"));
+			user.setName(rs.getString("name"));
 			user.setPassword(rs.getString("pass"));
 			user.setEmail(rs.getString("email"));	
 			return user;
@@ -90,7 +68,7 @@ public class UserDaoImp implements UserDao {
 	
 	@Override
 	public void deleteUserById(Long userId) {
-		this.jdbctemplate.update("delete from User where id = ?" , userId);
+		this.jdbctemplate.update("delete from User where userid = ?" , userId);
 	}
 
 }

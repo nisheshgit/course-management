@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.geekmj.seedgs.domain.User;
-import com.geekmj.seedgs.domain.User_course;
-import com.geekmj.seedgs.domain.User_details;
 import com.geekmj.seedgs.service.UserService;
-import com.geekmj.seedgs.service.UserService_course;
 
 
 @Controller
