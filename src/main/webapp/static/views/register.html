@@ -1,0 +1,73 @@
+<section>
+	<div ng-controller="registerController">
+		<div id="loginModal" class="modal show" tabindex="-1" role="dialog"
+			aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content well">
+					<div class="modal-header">
+						<form name="form" novalidate>
+							<fieldset>
+								<h1 class="text-center">
+									<legend>Sign Up for free</legend>
+								</h1>
+								<form class="form col-md-12 center-block">
+
+									<div class="form-group">
+										Name : <input type="text" class="form-control input-lg"
+											placeholder="Your name please!" name="userName"
+											ng-model="user.name" required> <span
+											ng-show="form.userName.$dirty && form.userName.$invalid">
+											<span ng-show="form.userName.$error.required">name is
+												required.</span>
+										</span>
+									</div>
+
+									<div class="form-group">
+										Email : <input type="email" class="form-control input-lg"
+											placeholder="Your email please" name="userEmail"
+											ng-model="user.email" required> <span
+											ng-show="form.userEmail.$dirty && form.userEmail.$invalid">
+											<span ng-show="form.userEmail.$error.required">email
+												is required.</span> <span ng-show="form.userEmail.$error.email">email
+												is invalid.</span>
+										</span>
+									</div>
+
+									<div class="form-group">
+										Password : <input type="password"
+											class="form-control input-lg"
+											placeholder="Your Password here" name="userPassword"
+											ng-model="user.password" required> <span
+											ng-show="form.userPassword.$dirty && form.userPassword.$invalid">
+											<span ng-show="form.userEmail.$error.required">password
+												is required.</span>
+										</span>
+									</div>
+
+
+									<div class="form-group">
+										Confirm Password : <input type="password"
+											class="form-control input-lg"
+											placeholder="Confirm your password" name="confirmPassword"
+											ng-model="user.confirmPassword" compare-to="user.password"
+											required> <span
+											ng-show="form.confirmPassword.$dirty && form.confirmPassword.$invalid">
+											<span ng-show="form.confirmPassword.$error.required">password
+												confirmation is required.</span>
+										</span>
+									</div>
+
+									<input type="button" class="btn btn-success" value="Register"
+										ng-click="register()">
+									<button type="button" class="taskDelete btn btn-danger "
+										value="Cancel" ng-click="cancel()">
+										<i class="fa fa-trash-o icon"></i> Cancel
+									</button>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
