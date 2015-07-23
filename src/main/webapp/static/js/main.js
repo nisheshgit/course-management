@@ -40,7 +40,16 @@ var app = angular
 .controller("MainController", ['$state', function($state, $scope) {
     console.log("runs");
     $state.go('login');
-}]);
+}])
+
+
+.factory('people',function(){
+	return {
+        id: '',
+        name: '',
+        age: '',
+        role: '',
+}});
 
 
 

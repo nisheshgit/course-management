@@ -1,4 +1,4 @@
-app.controller('loginController', ['$cookies', '$state', '$rootScope', '$scope' ,'$http', function($cookies, $state, $rootScope, $scope,$http) {
+app.controller('loginController', ['$cookies', '$state', '$rootScope', '$scope' ,'$http' ,'people', function($cookies, $state, $rootScope, $scope,$http,people) {
     $scope.register = function() {
         console.log('register');
         $state.go('register');
@@ -22,7 +22,7 @@ app.controller('loginController', ['$cookies', '$state', '$rootScope', '$scope' 
        
 }])
 
-.controller('registerController',['$state', '$scope' ,'$http', function($state, $scope, $http) {
+.controller('registerController',['$state', '$scope' ,'$http' ,'people', function($state, $scope, $http, people) {
     $scope.user = {};
     $scope.user.name = "new";
     $scope.user.email = "new@new.com";
